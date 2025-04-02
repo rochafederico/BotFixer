@@ -5,14 +5,15 @@
 ## Funcionalidades
 
 - Endpoint básico para verificar que la API esté funcionando (`GET /api/bot/status`).
+- Endpoint POST para recibir y procesar mensajes del usuario.
+
 
 ## Cosas por hacer
 
-1. **Crear endpoint POST** para recibir y procesar mensajes del usuario.
-2. **Integrar procesamiento de lenguaje natural (NLP)** para mejorar la comprensión de los mensajes.
-3. **Conectar con una base de datos** para almacenar y mejorar los mensajes procesados.
-4. **Mejorar la lógica** para generar frases más precisas y claras.
-5. **Implementar validaciones** de entradas y manejo de errores.
+1. **Integrar procesamiento de lenguaje natural (NLP)** para mejorar la comprensión de los mensajes.
+2. **Conectar con una base de datos** para almacenar y mejorar los mensajes procesados.
+3. **Mejorar la lógica** para generar frases más precisas y claras.
+4. **Implementar validaciones** de entradas y manejo de errores.
 
 ## Contribuir
 
