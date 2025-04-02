@@ -1,0 +1,64 @@
+# Archivos de compilación de Java
+*.class
+
+# Archivos generados por el IDE
+/.idea/
+/*.iml
+/.vscode/
+/*.swp
+/.settings/
+/target/
+/out/
+
+# Dependencias de Maven
+/.mvn/
+/target/
+/pom.xml.tag
+/pom.xml.releaseBackup
+/pom.xml.versionsBackup
+/pom.xml.lastUpdated
+
+# Archivos de configuración del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración específicos de los entornos (si es necesario)
+*.log
+*.bak
+*.tmp
+
+# Archivos de configuración de Maven o Gradle
+/.gradle
+/build/
+
+# Archivos temporales o de respaldo de editores
+*.log
+*.bak
+*.swp
+
+# Variables de entorno en archivo .env (si usas este archivo)
+.env
+
+# Archivos específicos de IntelliJ IDEA (si usas este IDE)
+.idea/
+
+# Archivos específicos de Eclipse (si usas Eclipse)
+.settings/
+
+# Configuración de Java
+*.jar
+*.war
+*.ear
+
+# Archivos de configuración de Spring Boot (si no deseas subirlos)
+application-dev.properties
+application-prod.properties
+application-test.properties
+
+# Archivos del contenedor Docker (si los usas, generalmente no subidos al repo)
+Dockerfile
+docker-compose.yml
+
+# Archivos de configuración de logs
+*.log
+
