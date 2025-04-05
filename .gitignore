@@ -62,3 +62,4 @@ docker-compose.yml
 # Archivos de configuración de logs
 *.log
 
+src/main/resources/models/*

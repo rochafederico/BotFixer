@@ -2,6 +2,7 @@ package com.rochafederico.botfixer.controller;
 
 import java.util.Collections;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import static com.rochafederico.botfixer.constants.OpenApiConstants.*;
 import com.rochafederico.botfixer.dto.ErrorDetailDto;
 import com.rochafederico.botfixer.dto.MessageResponseDto;
+import com.rochafederico.botfixer.services.OpennlpService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -21,7 +23,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Message Formatting", description = "API for formatting messages")
 public class MessageFormattingController {
 
-    private static final String NOT_IMPLEMENTED_MESSAGE = "Error: This feature is not yet implemented.";
+    private final OpennlpService opennlpService;
+
+    @Autowired
+    public MessageFormattingController(OpennlpService opennlpService) {
+        this.opennlpService = opennlpService;
+    }
 
     @PostMapping
     @Operation(
@@ -35,11 +42,18 @@ public class MessageFormattingController {
             )
         }
     )
+    
     public ResponseEntity<MessageResponseDto> formatMessage(@RequestBody String message) {
         MessageResponseDto response = new MessageResponseDto();
-        response.setErrors(Collections.singletonList(
-            new ErrorDetailDto(HttpStatus.NOT_IMPLEMENTED.value(), NOT_IMPLEMENTED_MESSAGE)
-        ));
-        return new ResponseEntity<>(response, HttpStatus.NOT_IMPLEMENTED);
+        try {
+            String summary = opennlpService.resume(message);
+            response.getData().setSummary(summary);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            response.setErrors(Collections.singletonList(
+                new ErrorDetailDto(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage())
+            ));
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
